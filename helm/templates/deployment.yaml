@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apbstoreauth-deployment
+  name: {{ .Release.Name }}-deployment
   labels:
     app: apb.store.auth
 spec:
@@ -13,9 +13,14 @@ spec:
     metadata:
       labels:
         app: apb.store.auth
+      {{- if .Values.metrics }}
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '80'
+      {{- end }}
     spec:
       containers:
         - name: apb-store-auth
-          image: alanbarros/apb.store.auth
+          image: alanbarros/apb.store.auth:{{ .Values.version }}
           ports:
             - containerPort: 80
