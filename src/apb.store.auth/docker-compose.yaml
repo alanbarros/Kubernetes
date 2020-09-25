@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   apb.store.auth:
-    image: apb.store.auth
+    image: alanbarros/apb.store.auth
     build:
       context: .
       dockerfile: api/Dockerfile

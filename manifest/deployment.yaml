@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apbstoreauth-deployment
+  labels:
+    app: apb.store.auth
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apb.store.auth
+  template:
+    metadata:
+      labels:
+        app: apb.store.auth
+    spec:
+      containers:
+        - name: apb-store-auth
+          image: alanbarros/apb.store.auth
+          ports:
+            - containerPort: 80
